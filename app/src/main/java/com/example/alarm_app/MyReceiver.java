@@ -15,5 +15,10 @@ public class MyReceiver extends BroadcastReceiver {
            Bundle b=intent.getExtras();
            Toast.makeText(context, b.getString("MyMessage"), Toast.LENGTH_SHORT).show();
        }
+       else if(intent.getAction().equalsIgnoreCase("android.intent.action.BOOT_COMPLETED")){
+        //restart
+           SaveData saveData=new SaveData(context);
+           saveData.LoadData();
+       }
     }
 }

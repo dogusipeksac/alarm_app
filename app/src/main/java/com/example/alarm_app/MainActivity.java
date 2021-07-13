@@ -25,20 +25,10 @@ public class MainActivity extends AppCompatActivity {
     void SetTime(int Hour ,int Minute ){
 
 
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, Hour);
-        calendar.set(Calendar.MINUTE, Minute);
-        calendar.set(Calendar.SECOND, 0);
 
-        AlarmManager am = (AlarmManager)getSystemService  (Context.ALARM_SERVICE);
-        Intent intent = new Intent(this, MyReceiver.class);
-        intent.setAction("com.example.alarm_app");
-        intent.putExtra("MyMessage","hello from alarm");
-        PendingIntent pi = PendingIntent.getBroadcast(this, 0, intent,
-                PendingIntent.FLAG_UPDATE_CURRENT);
-        am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
-                AlarmManager.INTERVAL_DAY , pi);
-
+        SaveData saveData=new SaveData(this);
+        saveData.alarmSet(Hour,Minute);
+        saveData.SaveData(Hour,Minute);
 
     }
 }
